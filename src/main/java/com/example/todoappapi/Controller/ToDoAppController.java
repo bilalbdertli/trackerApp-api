@@ -34,12 +34,12 @@ public class ToDoAppController {
                 toDo.setChecked(false);
                 toDoRepo.save(toDo);
                 return "To-do is checked as not done";
-            } else {
-                toDo.setChecked(true);
-                toDoRepo.save(toDo);
-                return "To-do is checked as done";
-
             }
+            toDo.setChecked(true);
+            toDoRepo.save(toDo);
+            return "To-do is checked as done";
+
+
         }
         catch (Exception e){
             return "A problem has occurred";
