@@ -26,4 +26,25 @@ public class ToDoAppController {
 
     }
 
+    @PutMapping("/updateToDo/{id}")
+    public String updateToDo(@PathVariable String id) {
+        try {
+            ToDo toDo = toDoRepo.findById(id).get();
+            if (toDo.isChecked()) {
+                toDo.setChecked(false);
+                toDoRepo.save(toDo);
+                return "To-do is checked as not done";
+            } else {
+                toDo.setChecked(true);
+                toDoRepo.save(toDo);
+                return "To-do is checked as done";
+
+            }
+        }
+        catch (Exception e){
+            return "A problem has occurred";
+        }
+
+    }
+
 }
