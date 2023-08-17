@@ -1,9 +1,11 @@
 package com.example.todoappapi.Model;
 
+import jakarta.persistence.Entity;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 
+@Entity
 public class ToDo {
     private boolean isChecked;
     private String description;

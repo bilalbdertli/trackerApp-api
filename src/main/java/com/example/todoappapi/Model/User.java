@@ -1,64 +1,36 @@
 package com.example.todoappapi.Model;
 
-import org.springframework.data.annotation.Id;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
+
     @Id
-    private String Id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    private Long id;
     private String username;
     private String password;
-    private String role;
+    private Boolean enabled;
 
-    private List<ToDo> toDoList = new ArrayList<ToDo>();
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<Role> roles;
 
-    public User(){
+    @OneToMany(cascade = {CascadeType.MERGE,CascadeType.REMOVE}, fetch = FetchType.EAGER,mappedBy = "user")
+    private List<ToDo> toDoList;
 
-    }
 
-    public User(String username, String password, String role) {
-        this.username = username;
-        this.password = password;
-        this.role = role;
-    }
 
-    public String getUsername() {
-        return username;
-    }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getId() {
-        return Id;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "Id='" + Id + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                '}';
-    }
 }
