@@ -3,7 +3,7 @@ package com.example.todoappapi.dto;
 public class UserDto {
     private String username;
     private String password;
-    private String role;
+
 
     private Boolean enabled;
 
@@ -23,11 +23,5 @@ public class UserDto {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
-    }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
 }

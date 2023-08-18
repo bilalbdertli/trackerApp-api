@@ -1,19 +1,18 @@
 package com.example.todoappapi.Model;
 
 import jakarta.persistence.Entity;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
 
 import java.time.LocalDateTime;
 
 @Entity
 public class ToDo {
+    @Id
+    private String id;
     private boolean isChecked;
     private String description;
     private String title;
     private String dueDate;
-
-    @Id
-    private  String id;
 
     public ToDo() {
     }
@@ -60,10 +59,15 @@ public class ToDo {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return  "id=" + id + ", title=" + title +  ", description=" + description + ", dueDate=" + dueDate;
     }
+
 
 
 }
