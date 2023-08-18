@@ -1,7 +1,6 @@
 package com.example.todoappapi.Security;
 
 import com.example.todoappapi.Model.User;
-import com.example.todoappapi.Service.UserService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

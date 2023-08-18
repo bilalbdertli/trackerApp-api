@@ -10,7 +10,7 @@ public class UserMapper {
         if(Objects.isNull(user)) {return userDto;}
         userDto.setUsername(user.getUsername());
         userDto.setPassword(user.getPassword());
-
+        userDto.setRole(user.getRole());
         return userDto;
     }
 }
