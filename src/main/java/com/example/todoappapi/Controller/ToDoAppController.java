@@ -47,4 +47,16 @@ public class ToDoAppController {
 
     }
 
+    @DeleteMapping("/deleteToDo/{id}")
+    public  String deleteToDo(@PathVariable String id){
+        try {
+            ToDo toDo = toDoRepo.findById(id).get();
+            toDoRepo.delete(toDo);
+            return "To-do is deleted";
+        }
+        catch (Exception e){
+            return "A problem has occurred";
+        }
+    }
+
 }
