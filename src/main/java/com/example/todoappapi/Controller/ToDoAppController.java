@@ -1,5 +1,7 @@
 package com.example.todoappapi.Controller;
 
+import com.example.todoappapi.Model.Note;
+import com.example.todoappapi.Repo.NoteRepo;
 import com.example.todoappapi.Repo.ToDoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +16,25 @@ public class ToDoAppController {
     @Autowired
     ToDoRepo toDoRepo;
 
+    @Autowired
+    NoteRepo noteRepo;
+
     @GetMapping("/getAll")
     public List<ToDo> getAll() {
         return toDoRepo.findAll();
+    }
+
+    @GetMapping("/getAllNotes")
+    public List<Note> getAllNotes() {
+        return noteRepo.findAll();
+    }
+
+
+    @PostMapping("/addNote")
+
+    public Note addNote(@RequestBody Note note) {
+        return noteRepo.save(note);
+
     }
 
     @PostMapping("/addToDo")
@@ -53,6 +71,19 @@ public class ToDoAppController {
             ToDo toDo = toDoRepo.findById(id).get();
             toDoRepo.delete(toDo);
             return "To-do is deleted";
+        }
+        catch (Exception e){
+            return "A problem has occurred";
+        }
+    }
+
+
+    @DeleteMapping("/deleteNote/{id}")
+    public  String deleteNote(@PathVariable String id){
+        try {
+            Note note = noteRepo.findById(id).get();
+            noteRepo.delete(note);
+            return "Note is deleted";
         }
         catch (Exception e){
             return "A problem has occurred";
