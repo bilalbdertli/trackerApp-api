@@ -4,9 +4,11 @@ import com.example.todoappapi.Model.Note;
 import com.example.todoappapi.Repo.NoteRepo;
 import com.example.todoappapi.Repo.ToDoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.web.bind.annotation.*;
 import com.example.todoappapi.Model.ToDo;
 
+import javax.management.Query;
 import java.util.List;
 
 /*controller class*/
@@ -19,9 +21,14 @@ public class ToDoAppController {
     @Autowired
     NoteRepo noteRepo;
 
-    @GetMapping("/getAll")
+    @GetMapping("/getAll/true")
     public List<ToDo> getAll() {
-        return toDoRepo.findAll();
+        return toDoRepo.findByIsChecked(true);
+    }
+
+    @GetMapping("/getAll/false")
+    public List<ToDo> getNoteChecked() {
+        return toDoRepo.findByIsChecked(false);
     }
 
     @GetMapping("/getAllNotes")
