@@ -2,11 +2,13 @@ package com.example.todoappapi.Model;
 
 import org.springframework.data.annotation.Id;
 
+import java.time.LocalDateTime;
+
 public class Note {
 
     private String description;
     private String title;
-    private String dueDate;
+    private LocalDateTime dueDate;
 
     @Id
     private  String id;
@@ -15,7 +17,7 @@ public class Note {
 
     }
 
-    public Note(String description, String title, String dueDate) {
+    public Note(String description, String title, LocalDateTime dueDate) {
         this.description = description;
         this.title = title;
         this.dueDate = dueDate;
@@ -37,11 +39,11 @@ public class Note {
         this.title = title;
     }
 
-    public String getDueDate() {
+    public LocalDateTime getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(String dueDate) {
+    public void setDueDate(LocalDateTime dueDate) {
         this.dueDate = dueDate;
     }
 

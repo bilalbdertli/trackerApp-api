@@ -1,5 +1,6 @@
 package com.example.todoappapi.Model;
 
+import org.springframework.cglib.core.Local;
 import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
@@ -8,14 +9,14 @@ public class ToDo {
     private boolean isChecked;
     private String description;
     private String title;
-    private String dueDate;
+    private LocalDateTime dueDate;
 
     @Id
     private  String id;
 
     public ToDo() {
     }
-    public ToDo(boolean isChecked, String description, String title, String dueDate) {
+    public ToDo(boolean isChecked, String description, String title, LocalDateTime dueDate) {
         this.isChecked = isChecked;
         this.description = description;
         this.title = title;
@@ -46,11 +47,11 @@ public class ToDo {
         this.title = title;
     }
 
-    public String getDueDate() {
+    public LocalDateTime getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(String dueDate) {
+    public void setDueDate(LocalDateTime dueDate) {
         this.dueDate = dueDate;
     }
 
